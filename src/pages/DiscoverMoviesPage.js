@@ -54,7 +54,7 @@ export default function DiscoverMoviesPage() {
         value={searchText}
       ></input>
       <button onClick={navigateToSearch}>Search</button>
-      <p>{searchStatus.status}</p>
+      {/* <p>{searchStatus.status}</p> */}
 
       {searchStatus.data.map(function (movie) {
         // console.log("what's movie", movie);
