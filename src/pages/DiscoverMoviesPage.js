@@ -40,7 +40,7 @@ export default function DiscoverMoviesPage() {
       if (response.data.Error === "Movie not found!") {
         setSearchStatus({ status: "Oops, movie not found!", data: [] });
       } else if (params.searchtext === undefined) {
-        setSearchStatus({ status: "idle", data: [] });
+        setSearchStatus({ status: "Search for a movie", data: [] });
       } else {
         setSearchStatus({ status: "Success!", data: response.data.Search });
         setSearchText(params.searchtext);
