@@ -5,18 +5,23 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import DiscoverMoviesPage from "./pages/DiscoverMoviesPage";
 import NavBar from "./components/NavBar";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Hello World</h1>
-        <NavBar />
+        <NavBar className="nav" />
       </header>
       <Switch>
-        <Route path="/discover" component={DiscoverMoviesPage} />
+        <Route exact path="/" component={HomePage} />
+        <Route
+          exact
+          path="/discover/:searchtext?"
+          component={DiscoverMoviesPage}
+        />
         <Route path="/about" component={AboutPage} />
-        <Route path="/" component={HomePage} />
+        <Route path="/movie/:imdbID" component={MovieDetails} />
       </Switch>
     </div>
   );

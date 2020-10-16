@@ -1,0 +1,28 @@
+.App {
+  display: flex;
+  justify-content: center;
+}
+
+.App-header {
+  position: absolute;
+}
+
+h1 {
+  margin-top: 50px;
+}
+
+.search-box {
+  justify-self: center;
+}
+
+.details_image {
+  float: left;
+}
+
+.details_container {
+  margin-left: 200px;
+}
+
+.image_resulte {
+  display: inline;
+}
