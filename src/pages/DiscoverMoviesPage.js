@@ -35,9 +35,18 @@ export default function DiscoverMoviesPage() {
       const response = await axios.get(
         `http://www.omdbapi.com/?s=${queryParam}&apikey=2511cc5f`
       );
+      console.log(response);
 
-      // console.log("Success!", response.data.Search);
-      setSearchStatus({ status: "Success!", data: response.data.Search });
+      if (response.data.Error === "Movie not found!") {
+        setSearchStatus({ status: "Oops, movie not found!", data: [] });
+      } else if (params.searchtext === undefined) {
+        setSearchStatus({ status: "idle", data: [] });
+      } else {
+        setSearchStatus({ status: "Success!", data: response.data.Search });
+        setSearchText(params.searchtext);
+      }
+
+      console.log("Success!", response.data.Search);
     }
     // console.log("What is search status?", searchStatus);
     onClickSearch();
@@ -54,11 +63,12 @@ export default function DiscoverMoviesPage() {
         value={searchText}
       ></input>
       <button onClick={navigateToSearch}>Search</button>
-      {/* <p>{searchStatus.status}</p> */}
+      <p>{searchStatus.status}</p>
 
       {searchStatus.data.map(function (movie) {
         // console.log("what's movie", movie);
         const { Title, Year, Poster, imdbID } = movie;
+
         return (
           <div className="image_results" key={imdbID}>
             <Link to={`/movie/${imdbID}`}>
@@ -73,13 +83,3 @@ export default function DiscoverMoviesPage() {
     </div>
   );
 }
-
-// async function onClickSearch() {
-//   console.log("Search for this movie:", searchText);
-//   setSearchStatus({ status: "Searching...", data: [] });
-//   // Encode the string so that special characters
-//   //  like '&' and '?' don't accidentally mess up the URL
-//   const queryParam = encodeURIComponent(searchText);
-//   const response = await axios.get(
-//     `http://www.omdbapi.com/?s=${queryParam}&apikey=2511cc5f`
-//   );

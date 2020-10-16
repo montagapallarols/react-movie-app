@@ -1,4 +1,3 @@
-import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -33,7 +32,11 @@ export default function MovieDetails() {
         {movieDetails.data?.Title} ({movieDetails.data?.Year})
       </h1>
 
-      <img className="details_image" src={movieDetails.data?.Poster} />
+      <img
+        className="details_image"
+        src={movieDetails.data?.Poster}
+        alt={`movieDetails.data?.Title`}
+      />
       <div className="details_container">
         <p>{movieDetails.data?.Genre}</p>
         <h3>DIRECTOR:</h3>
